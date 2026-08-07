@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ahmed.drivetest.R
 import com.ahmed.drivetest.data.QuestionRepository
@@ -25,6 +26,8 @@ class TrainingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_training)
+
+        Toast.makeText(this, "الشاشة فتحت", Toast.LENGTH_SHORT).show()
 
         repository = QuestionRepository(this)
         queue = repository.getTrainingQueue()
@@ -66,7 +69,10 @@ class TrainingActivity : AppCompatActivity() {
             btn.setBackgroundColor(Color.parseColor("#FFFFFF"))
             if (i < q.options.size) {
                 btn.text = q.options[i]
-                btn.setOnClickListener { onOptionSelected(i) }
+                btn.setOnClickListener {
+                    Toast.makeText(this, "ضغطت خيار رقم ${i + 1}", Toast.LENGTH_SHORT).show()
+                    onOptionSelected(i)
+                }
             }
         }
     }
